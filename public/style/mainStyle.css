@@ -1,0 +1,68 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+ 
+
+body{
+    /* font-family: 'Titillium Web', sans-serif; */
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+#divRegister {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 45px;
+    column-gap: 40px;
+}
+
+#divAdvertisements, #divJobApps {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 45px;
+    column-gap: 40px;
+    justify-content: center;
+}
+
+.bcgColorBlue{
+    background-color: #2B6F82;
+}
+
+.sizeCardAdvertisement {
+    width: 30%;
+}
+
+/* Animation hover des advertisements cards */
+.animationHoverGrow:hover{
+    transform: scale(1.05);
+    transition-duration: 180ms;
+    transition-timing-function: linear;
+    transition-delay: 20ms;
+}
+
+/* REVERSE Animation hover des advertisements cards */
+.animationHoverGrow{
+    transform: scale(1);
+    transition-duration: 180ms;
+    transition-timing-function: linear;
+    transition-delay: 20ms;
+}
+
+
+
+@media screen and (max-width: 700px) and (min-width:500px)
+{
+    /* Rédigez vos propriétés CSS ici */
+    .card{
+        width: 80% !important;
+        margin: 0 !important;
+    }
+}
+
+@media screen and (max-width: 700px)
+{
+    /* Rédigez vos propriétés CSS ici */
+    .card{
+        width: 70% !important;
+    }
+}
+

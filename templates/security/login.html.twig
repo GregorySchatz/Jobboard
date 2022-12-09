@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}JoBoard - Connexion
+{% endblock %}
+
+{% block main %}
+	<div class="container">
+		<h1 class="mt-4">Connexion Form</h1>
+		<form action="{{ path('security.login') }}" method="post">
+			<div class="form-group">
+				<label for="username" class="form-label mt-4">Email address</label>
+				<input type="email" class="form-control" id="username"
+                name="_username" placeholder="Enter email">
+				<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+			</div>
+			<div class="form-group">
+				<label for="password" class="form-label mt-4">Password</label>
+				<input type="password" class="form-control" id="password" 
+                name="_password" placeholder="Password">
+			</div>
+
+            <button type="submit" class="btn btn-primary">
+                Login
+            </button>
+		</form>
+		<h4 style="margin-top: 10px;">Don't have an account ? <a href="./register_choice">Create one !</a></h4>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}JoBoard - RegistrationChoice{% endblock %}
+
+{% block main %}
+<div id="divRegister" style="margin-top:100px ;">
+    <div class="card animationHoverGrow sizeCardAdvertisement">
+				<div class="card-header bcgColorBlue">You are an user, who search a work</div>
+				<div class="card-body">
+				
+					<p class="card-text"></p>
+
+					<a class="btn bcgColorBlue" href="./register">
+                        Register as a User
+                    </a>
+
+				</div>
+	</div>
+    <div class="card animationHoverGrow sizeCardAdvertisement">
+			<div class="card-header bcgColorBlue">You are a company, which search employee</div>
+			<div class="card-body">
+				
+				<p class="card-text"></p>
+
+					<a class="btn bcgColorBlue" href="./registerCompany">
+						Register as a Company
+					</a>
+
+			</div>
+	</div>
+</div>
+{% endblock %}

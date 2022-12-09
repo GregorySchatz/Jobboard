@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	JoBoard - New advertissement
+{% endblock %}
+
+
+{% block main %}
+<div class='container'>
+    <h1 class="mt-4">Create a new advertisement :</h1>
+    {{ form_start(form) }}
+        {% if user.Firstname is defined %}
+            {{ form_widget(form.CompanyId, { attr: { value: user.CompanyId } }) }}
+        {% endif %}
+    {{ form_end(form) }}
+</div>
+    
+{% endblock %}
+

@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  JoBoard - Accueil
+{% endblock %}
+
+{% block main %}
+  <div class="m-3">
+    <h1 class="display-5">Welcome on JoBoard !</h1>
+    <p class="lead">If you want to quickly respond to an advertisement, you must register</p>
+    <hr />
+  </div>
+
+{% if ads[0] is defined %}
+
+  <div id="divAdvertisements">
+    {# Pour chaque élément trouvé dans le tableau ads #}
+    {% for item in ads %}
+      <div class="card animationHoverGrow sizeCardAdvertisement">
+        <div class="card-header bcgColorBlue text-white">
+          <h5 class="card-title m-1 p-1">{{ item.Title }}</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text text-muted">{{ item.Name }}</p>
+          <p class="card-text">{{ item.Description|slice(0,100) }}...</p>
+
+          <a class="btn bcgColorBlue" data-bs-toggle="offcanvas" href="#offcanvas{{ item.id }}">Learn more</a>
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalForm{{ item.id }}">Apply</button>
+        </div>
+      </div>
+
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas{{ item.id }}" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">{{ item.Title }}</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <p class="text-muted">{{ item.Name }}</p>
+          <div>{{ item.Description }}</div>
+          <div>
+            <p>{{ item.Wages }} €</p>
+            <p>{{ item.Workingtime }} heures/semaine</p>
+            <p>{{ item.Label }}</p>
+          </div>
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalForm{{ item.id }}">Apply</button>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modalForm{{ item.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Candidacy</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              {# <form>
+						<div class="row">
+							<div class="col">
+								<p>You are applying for {{item.Name}} as : {{item.Title}}</p>
+							</div>
+						</div>
+						<div class="row">
+  							<div class="col my-1">
+    							<input type="text" class="form-control" placeholder="First name" aria-label="First name">
+  							</div>
+ 							 <div class="col my-1">
+    							<input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+ 							</div>
+						</div>
+						<div class="row">
+							<div class="col my-1">
+								<input type="email" class="form-control" placeholder="Email adress">
+							</div>						
+						</div>
+						<div class="row">
+							<div class="col my-1">
+								<input type="tel" class="form-control" placeholder="Telephone number">
+							</div>								
+						</div>
+						<div class="row">
+							<div class="col my-1">
+								<textarea class="form-control" placeholder="Your message"></textarea>
+							</div>						
+						</div>
+					</form> #}
+              {# {% if forms[item.id] is defined %} #}
+              <div class="col">
+                <p>You are applying for {{ item.Name }} as : {{ item.Title }}</p>
+              </div>
+              {{ form_start(forms[item.id]) }}
+              {% if user.Firstname is defined %}
+                {{ form_widget(forms[item.id].Firstname, { attr: { value: user.Firstname } }) }}
+                {{ form_widget(forms[item.id].Lastname, { attr: { value: user.Lastname } }) }}
+                {{ form_widget(forms[item.id].Email, { attr: { value: user.Email } }) }}
+                {{ form_widget(forms[item.id].Phone, { attr: { value: user.Phone } }) }}
+              {% endif %}
+
+              {{ form_end(forms[item.id]) }}
+
+              {# {% endif %} #}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn bcgColorBlue">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">No results found</h4>
+    <p>There are no advertisement yet !</p>
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	JoBoard - Job applications
+{% endblock %}
+
+{% block main %}
+  {% if ads[0].Name is defined %}
+    <h2 style="text-align: center; margin:2%;">{{ads[0].Name}}'s advertisments !</h2>
+{% else %}
+    <h2 style="text-align: center; margin:2%;">No advertisments yet !</h2>
+  {% endif %}
+
+  <div id="divJobApps" class="my-3">
+	  {% for item in ads %}
+
+      <div class="card animationHoverGrow sizeCardAdvertisement">
+	  		<div class="card-header bcgColorBlue text-white">
+            
+	  			<h5 class="card-title m-1 p-1">{{ item.Title }}</h5>
+	  		</div>
+	  		
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item py-3">
+            <div class="text-center">
+              <p class="card-text"><strong>Description</strong></p>
+              <hr />
+              <p class="card-text">{{ item.Description }}</p>
+            </div>          
+          </li>
+          <li class="list-group-item py-3">
+            <div class="text-center">
+              <p class="card-text"><strong>Other</strong></p>
+              <hr />
+              <p class="card-text">Salaire : {{ item.Wages }}€</p>
+	  		      <p class="card-text">{{ item.Workingtime }} heures/semaine</p>
+            </div>
+          </li>
+          <li class="list-group-item py-3">
+            <div class="text-center">
+              <p class="card-text"><strong>Actions</strong></p>
+              <hr />
+              <a href="{{ path('app_edit_advertisement', {'id': item.id}) }}"><button type="button" class="btn btn-warning">Edit</button></a>
+              <a href={{ path('app_delete_advertisement_by_id', {'id': item.id}) }}><button type="button" class="btn btn-danger">Delete</button></a>
+
+            </div>          
+          </li>
+          
+        </ul>
+
+        
+	  		
+
+
+	  	
+	  		
+	  	</div>  
+
+	  {% endfor %}
+  </div>
+
+{% endblock %}
